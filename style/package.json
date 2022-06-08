@@ -10,14 +10,14 @@
   "scripts": {
     "config": "cp configs/config.maptiler.js config.js",
     "code_format": "npx prettier --write . && npx svgo -f icons/ --config configs/config.svgo.cjs",
-    "clean": "rm -rf dist .parcel-cache",
+    "clean": "rm -rf dist",
     "presprites": "rm -rf dist/sprites",
     "sprites": "node scripts/sprites.js",
     "status_map": "node scripts/status_map.js",
     "taginfo": "node scripts/taginfo.js",
     "start": "run-s clean sprites serve",
-    "serve": "parcel index.html --open --port 1776",
-    "build:code": "parcel build index.html --public-url ./",
+    "serve": "node scripts/serve.js",
+    "build:code": "node scripts/build.js",
     "build": "run-s clean sprites build:code taginfo status_map"
   },
   "dependencies": {
@@ -26,9 +26,10 @@
     "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
+    "create-serve": "^1.0.1",
+    "esbuild": "^0.14.43",
     "maplibre-gl": "^2.1.9",
     "openmapsamples-maplibre": "github:adamfranco/OpenMapSamples-MapLibre",
-    "parcel": "^2.3.0",
     "prettier": "2.3.2",
     "svgo": "^2.8.0"
   },
